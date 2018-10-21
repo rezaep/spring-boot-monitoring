@@ -18,8 +18,11 @@ services:
     image: prom/prometheus:latest
     container_name: "monitoring-prometheus"
     volumes:
+      - /opt/prometheus:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
+      - app
+    links:
       - app
     ports:
       - '9090:9090'
